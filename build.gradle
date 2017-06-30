@@ -15,6 +15,9 @@ repositories {
     // Use 'jcenter' for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+
+    // Maven central repository.
+    mavenCentral()    
 }
 
 // In this section you declare the dependencies for your production and test code
@@ -27,4 +30,10 @@ dependencies {
     // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
     // 'test.useTestNG()' to your build script.
     testCompile 'junit:junit:4.12'
+
+    // Google Guava, as described in https://github.com/google/guava/wiki/UseGuavaInYourBuild
+    compile group: 'com.google.guava', name: 'guava', version: '19.0'
+    
+    // https://mvnrepository.com/artifact/com.googlecode.efficient-java-matrix-library/ejml
+	compile group: 'com.googlecode.efficient-java-matrix-library', name: 'ejml', version: '0.25'
 }
