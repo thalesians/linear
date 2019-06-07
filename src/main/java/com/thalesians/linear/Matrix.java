@@ -1,6 +1,21 @@
 package com.thalesians.linear;
 
+import com.google.common.collect.ImmutableList;
+
 public interface Matrix<T> {
+	
+	static SimpleDenseMatrixOfDoubles.Builder builder() {
+		return SimpleDenseMatrixOfDoubles.builder();
+	}
+	
+	static SimpleDenseMatrixOfDoubles.Builder builder(int rowCount, int columnCount) {
+		return SimpleDenseMatrixOfDoubles.builder(rowCount, columnCount);
+	}
+	
+	static SimpleDenseMatrixOfDoubles.Builder builder(ImmutableList<ImmutableList<Double>> rows) {
+		return SimpleDenseMatrixOfDoubles.builder(rows);
+	}
+	
 	T get(int row, int column);
 	Matrix<T> get(Rectangle rect);
 	int getRowCount();

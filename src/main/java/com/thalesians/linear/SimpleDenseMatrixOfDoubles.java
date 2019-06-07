@@ -4,6 +4,8 @@ import org.ejml.alg.dense.mult.MatrixDimensionException;
 import org.ejml.data.DenseMatrix64F;
 import org.ejml.ops.CommonOps;
 
+import com.google.common.collect.ImmutableList;
+
 public final class SimpleDenseMatrixOfDoubles extends AbstractMatrix<Double> {
 	final DenseMatrix64F impl;
 	
@@ -113,6 +115,23 @@ public final class SimpleDenseMatrixOfDoubles extends AbstractMatrix<Double> {
 	
 	public static Builder builder(int rowcount, int columncount) {
 		return (new Builder()).setShape(rowcount, columncount);
+	}
+	
+	public static Builder builder(ImmutableList<ImmutableList<Double>> rows) {
+		int rowCount = rows.size();
+		int columnCount;
+		if (rows.isEmpty()) {
+			columnCount = 0;
+		} else {
+			columnCount = rows.get(0).size();
+		}
+		Builder builder = builder(rowCount, columnCount);
+		for (int i = 0; i < rowCount; ++i) {
+			for (int j = 0; j < columnCount; ++j) {
+				builder.set(i, j, rows.get(i).get(j));
+			}
+		}
+		return builder;
 	}
 	
 	public static Builder builderFromCopy(Matrix<? extends Double> matrix) {
